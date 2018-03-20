@@ -71,25 +71,33 @@ public class playerLook : MonoBehaviour
     {
         RaycastHit objectHit;
         seenObject = Physics.Raycast(transform.position, sightRayRange.position, out objectHit);
-        
-        
-        if(seenObject)
+
+
+        if (seenObject)
         {
             seenObjectText.GetComponent<Text>().text = objectHit.collider.tag.ToString();
             seenObjectText.gameObject.SetActive(true);
 
-            if (Input.GetButton("Fire1")) 
+
+
+            if (Input.GetButtonDown("Fire1"))
             {
-                objectHit.transform.parent = gameObject.transform;
+                objectHit.transform.SetParent(sightRayRange.gameObject.transform);
             }
-            else
+            else if (Input.GetButtonUp("Fire1"))
             {
-                objectHit.transform.parent = null;
+                objectHit.transform.SetParent(null);
             }
         }
         else
         {
             seenObjectText.gameObject.SetActive(false);
+            
+
+        }
+
+
         }
     }
-}
+
+
