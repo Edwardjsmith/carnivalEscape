@@ -8,8 +8,6 @@ public class playerLook : MonoBehaviour
 
     GameObject playerBody;
     public float mouseSensitivity;
-
-    public Transform sightRayRange;
     bool seenObject;
 
     public Text seenObjectText;
@@ -69,9 +67,11 @@ public class playerLook : MonoBehaviour
 
     void lookAtObject()
     {
+        Ray ray = GetComponent<Camera>().ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f)); //Aligns ray to centre of cam
         RaycastHit objectHit;
-        seenObject = Physics.Raycast(transform.position, sightRayRange.position, out objectHit);
-
+      
+        seenObject = Physics.Raycast(ray, out objectHit, 5.0f);
+        
 
         if (seenObject)
         {
@@ -80,13 +80,25 @@ public class playerLook : MonoBehaviour
 
 
 
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButton("Fire1"))
             {
-                objectHit.transform.SetParent(sightRayRange.gameObject.transform);
+                objectHit.transform.SetParent(gameObject.transform);
+
+                if (objectHit.transform.GetComponent<Rigidbody>())
+                {
+                    objectHit.transform.GetComponent<Rigidbody>().useGravity = false;
+                }
+
+
             }
-            else if (Input.GetButtonUp("Fire1"))
+            else
             {
                 objectHit.transform.SetParent(null);
+
+                if (objectHit.transform.GetComponent<Rigidbody>())
+                {
+                    objectHit.transform.GetComponent<Rigidbody>().useGravity = true;
+                }
             }
         }
         else

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - playerBody
   - Cube
+  - Floor
   layers:
   - Default
   - TransparentFX

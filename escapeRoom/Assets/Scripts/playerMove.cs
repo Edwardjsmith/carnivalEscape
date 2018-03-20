@@ -28,10 +28,10 @@ public class playerMove : MonoBehaviour
         //Movement
 
         //Move side to side
-        Vector3 moveHorizontal = transform.right * horizontal * speed;
+        Vector3 moveHorizontal = transform.right * horizontal * speed * Time.deltaTime;
 
         //Move forward and back
-        Vector3 moveForward = transform.forward * vertical * speed;
+        Vector3 moveForward = transform.forward * vertical * speed * Time.deltaTime;
 
         //Implement said moves
         playerController.SimpleMove(moveHorizontal);
