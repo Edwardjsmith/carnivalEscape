@@ -5,14 +5,14 @@ using UnityEngine;
 public class playerMove : MonoBehaviour
 {
     private CharacterController playerController;
-    private Rigidbody rigid;
+    
     public float speed;
 
 
     private void Awake()
     {
         playerController = GetComponent<CharacterController>();
-        rigid = GetComponent<Rigidbody>();
+       
     }
 
     private void Update()
