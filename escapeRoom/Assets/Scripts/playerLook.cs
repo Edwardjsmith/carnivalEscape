@@ -13,6 +13,7 @@ public class playerLook : MonoBehaviour
     public Text seenObjectText;
 
     float xAxisClamp = 0.0f;
+    public bool carry;
 
     private void Awake()
     {
@@ -22,6 +23,7 @@ public class playerLook : MonoBehaviour
 
         seenObject = false;
         seenObjectText.gameObject.SetActive(false);
+        carry = false;
     }
 
     // Update is called once per frame
@@ -80,16 +82,14 @@ public class playerLook : MonoBehaviour
 
 
 
-            if (Input.GetButton("Fire1"))
+            if (Input.GetButton("Fire1") && objectHit.collider.tag != "Floor" && objectHit.transform.GetComponent<dropOnCollision>().carry == true)
             {
                 objectHit.transform.SetParent(gameObject.transform);
 
                 if (objectHit.transform.GetComponent<Rigidbody>())
                 {
-                    objectHit.transform.GetComponent<Rigidbody>().useGravity = false;
+                   objectHit.transform.GetComponent<Rigidbody>().isKinematic = true;
                 }
-
-
             }
             else
             {
@@ -97,19 +97,15 @@ public class playerLook : MonoBehaviour
 
                 if (objectHit.transform.GetComponent<Rigidbody>())
                 {
-                    objectHit.transform.GetComponent<Rigidbody>().useGravity = true;
+                   objectHit.transform.GetComponent<Rigidbody>().isKinematic = false;
                 }
             }
         }
         else
         {
             seenObjectText.gameObject.SetActive(false);
-            
-
-        }
-
-
         }
     }
+}
 
 
