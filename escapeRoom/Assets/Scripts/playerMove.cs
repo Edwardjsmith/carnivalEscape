@@ -12,7 +12,6 @@ public class playerMove : MonoBehaviour
     private void Awake()
     {
         playerController = GetComponent<CharacterController>();
-       
     }
 
     private void Update()

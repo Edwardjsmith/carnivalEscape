@@ -80,24 +80,26 @@ public class playerLook : MonoBehaviour
             seenObjectText.GetComponent<Text>().text = objectHit.collider.tag.ToString();
             seenObjectText.gameObject.SetActive(true);
 
-
-
-            if (Input.GetButton("Fire1") && objectHit.collider.tag != "Floor" && objectHit.transform.GetComponent<dropOnCollision>().carry == true)
+            if (objectHit.transform.GetComponent<dropOnCollision>())
             {
-                objectHit.transform.SetParent(gameObject.transform);
 
-                if (objectHit.transform.GetComponent<Rigidbody>())
+                if (Input.GetButton("Fire1") && objectHit.collider.tag != "Floor" && objectHit.transform.GetComponent<dropOnCollision>().carry == true)
                 {
-                   objectHit.transform.GetComponent<Rigidbody>().isKinematic = true;
+                    objectHit.transform.SetParent(gameObject.transform);
+
+                    if (objectHit.transform.GetComponent<Rigidbody>())
+                    {
+                        objectHit.transform.GetComponent<Rigidbody>().isKinematic = true;
+                    }
                 }
-            }
-            else
-            {
-                objectHit.transform.SetParent(null);
-
-                if (objectHit.transform.GetComponent<Rigidbody>())
+                else
                 {
-                   objectHit.transform.GetComponent<Rigidbody>().isKinematic = false;
+                    objectHit.transform.SetParent(null);
+
+                    if (objectHit.transform.GetComponent<Rigidbody>())
+                    {
+                        objectHit.transform.GetComponent<Rigidbody>().isKinematic = false;
+                    }
                 }
             }
         }
