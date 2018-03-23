@@ -81,7 +81,7 @@
     <Compile Include="Assets\Scripts\dropOnCollision.cs" />
     <Compile Include="Assets\Scripts\playerLook.cs" />
     <Compile Include="Assets\Scripts\playerMove.cs" />
-    <Compile Include="Assets\trigger.cs" />
+    <Compile Include="Assets\Scripts\trigger.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />
