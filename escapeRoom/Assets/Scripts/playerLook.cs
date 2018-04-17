@@ -16,6 +16,7 @@ public class playerLook : MonoBehaviour
 
     float xAxisClamp = 0.0f;
     public bool carry;
+    GameObject axe;
 
     public static bool hasAxe = false;
 
@@ -28,7 +29,12 @@ public class playerLook : MonoBehaviour
         seenObject = false;
         seenObjectText.gameObject.SetActive(false);
         carry = false;
+<<<<<<< HEAD
         axe.SetActive(false);
+=======
+        axe = GameObject.FindGameObjectWithTag("axe");
+        //axe.SetActive(false);
+>>>>>>> 6b431f38358eaa2780188e545ac04f2cd5353980
     }
 
     // Update is called once per frame
@@ -141,9 +147,15 @@ public class playerLook : MonoBehaviour
                     }
                 }
             }
+<<<<<<< HEAD
             else
             {
                 seenObjectText.gameObject.SetActive(false);
+=======
+            else if(Input.GetButton("Fire1") && axe.activeSelf == true )
+            {
+                
+>>>>>>> 6b431f38358eaa2780188e545ac04f2cd5353980
             }
         }
     
