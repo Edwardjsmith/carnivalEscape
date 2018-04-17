@@ -78,6 +78,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\inventory.cs" />
     <Compile Include="Assets\Scripts\dropOnCollision.cs" />
     <Compile Include="Assets\Scripts\playerLook.cs" />
     <Compile Include="Assets\Scripts\playerMove.cs" />

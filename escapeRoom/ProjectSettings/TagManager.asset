@@ -8,6 +8,7 @@ TagManager:
   - Cube
   - Floor
   - Carpet
+  - Axe
   layers:
   - Default
   - TransparentFX

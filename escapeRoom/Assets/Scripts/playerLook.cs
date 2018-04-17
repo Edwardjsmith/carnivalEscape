@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class playerLook : MonoBehaviour
 {
-
+    public GameObject inv;
+    public GameObject axe;
+    bool inventoryActive = false;
     GameObject playerBody;
     public float mouseSensitivity;
     bool seenObject;
@@ -14,6 +16,8 @@ public class playerLook : MonoBehaviour
 
     float xAxisClamp = 0.0f;
     public bool carry;
+
+    public static bool hasAxe = false;
 
     private void Awake()
     {
@@ -24,13 +28,34 @@ public class playerLook : MonoBehaviour
         seenObject = false;
         seenObjectText.gameObject.SetActive(false);
         carry = false;
+        axe.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        rotateView();
-        lookAtObject();
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            inventoryActive = !inventoryActive;
+            inv.SetActive(inventoryActive);
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+        if (!inventoryActive)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            rotateView();
+            lookAtObject();
+        }
+
+        if(inventory.equipAxe == true)
+        {
+            axe.SetActive(true);
+        }
+        else
+        {
+            axe.SetActive(false);
+        }
     }
     void rotateView()
     {
@@ -69,45 +94,59 @@ public class playerLook : MonoBehaviour
 
     void lookAtObject()
     {
-        Ray ray = GetComponent<Camera>().ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f)); //Aligns ray to centre of cam
-        RaycastHit objectHit;
-      
-        seenObject = Physics.Raycast(ray, out objectHit, 5.0f);
-        
+       
 
-        if (seenObject)
-        {
-            seenObjectText.GetComponent<Text>().text = objectHit.collider.tag.ToString();
-            seenObjectText.gameObject.SetActive(true);
 
-            if (objectHit.transform.GetComponent<dropOnCollision>())
+            Ray ray = GetComponent<Camera>().ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f)); //Aligns ray to centre of cam
+            RaycastHit objectHit;
+
+            seenObject = Physics.Raycast(ray, out objectHit, 5.0f);
+
+
+            if (seenObject)
             {
+                seenObjectText.GetComponent<Text>().text = objectHit.collider.tag.ToString();
+                seenObjectText.gameObject.SetActive(true);
 
-                if (Input.GetButton("Fire1") && objectHit.collider.tag != "Floor" && objectHit.transform.GetComponent<dropOnCollision>().carry == true)
+                if(objectHit.collider.tag == "Axe")
+            {
+                if (Input.GetButton("Fire1"))
                 {
-                    objectHit.transform.SetParent(gameObject.transform);
-
-                    if (objectHit.transform.GetComponent<Rigidbody>())
-                    {
-                        objectHit.transform.GetComponent<Rigidbody>().isKinematic = true;
-                    }
+                    objectHit.transform.gameObject.SetActive(false);
+                    hasAxe = true;
                 }
-                else
-                {
-                    objectHit.transform.SetParent(null);
+            }
 
-                    if (objectHit.transform.GetComponent<Rigidbody>())
+
+                if (objectHit.transform.GetComponent<dropOnCollision>())
+                {
+
+                    if (Input.GetButton("Fire1") && objectHit.collider.tag != "Floor" && objectHit.transform.GetComponent<dropOnCollision>().carry == true)
                     {
-                        objectHit.transform.GetComponent<Rigidbody>().isKinematic = false;
+                        objectHit.transform.SetParent(gameObject.transform);
+
+                        if (objectHit.transform.GetComponent<Rigidbody>())
+                        {
+                            objectHit.transform.GetComponent<Rigidbody>().isKinematic = true;
+                        }
+                    }
+                    else
+                    {
+                        objectHit.transform.SetParent(null);
+
+                        if (objectHit.transform.GetComponent<Rigidbody>())
+                        {
+                            objectHit.transform.GetComponent<Rigidbody>().isKinematic = false;
+                        }
                     }
                 }
             }
+            else
+            {
+                seenObjectText.gameObject.SetActive(false);
+            }
         }
-        else
-        {
-            seenObjectText.gameObject.SetActive(false);
-        }
-    }
+    
 }
 
 
