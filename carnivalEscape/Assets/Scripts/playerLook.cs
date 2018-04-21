@@ -117,14 +117,11 @@ public class playerLook : MonoBehaviour
 
     void lookAtObject()
     {
-       
 
+        Ray ray = GetComponent<Camera>().ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f)); //Aligns ray to centre of cam
+        RaycastHit objectHit;
 
-            Ray ray = GetComponent<Camera>().ViewportPointToRay(new Vector3(0.5f, 0.5f, 0.0f)); //Aligns ray to centre of cam
-            RaycastHit objectHit;
-
-            seenObject = Physics.Raycast(ray, out objectHit, 5.0f);
-
+        seenObject = Physics.Raycast(ray, out objectHit, 5.0f);
 
         if (seenObject)
         {
@@ -171,7 +168,7 @@ public class playerLook : MonoBehaviour
         {
             seenObjectText.gameObject.SetActive(false);
         }
-        }
+    }
     public void updateEquip(GameObject obj)
     {
         equipItem = !equipItem;
