@@ -25,6 +25,9 @@ public class playerLook : MonoBehaviour
 
     public bool[] hasItem;
 
+    float timer;
+    int hour = 3600;
+   
 
     public static playerLook Instance
     {
@@ -37,6 +40,8 @@ public class playerLook : MonoBehaviour
 
     private void Awake()
     {
+     
+
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -62,9 +67,26 @@ public class playerLook : MonoBehaviour
 
     }
 
+    void OnGUI()
+    {
+        int minutes = Mathf.FloorToInt(timer / 60F);
+        int seconds = Mathf.FloorToInt(timer - minutes * 60);
+        string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
+
+        GUI.Label(new Rect(10, 10, 250, 100), niceTime);
+    }
+
+
     // Update is called once per frame
     void Update()
     {
+        timer += Time.deltaTime;
+
+        if(timer >= hour)
+        {
+            Debug.Log("You failed");
+        }
+
         if (Input.GetKeyDown(KeyCode.I))
         {
             inventoryActive = !inventoryActive;

@@ -10,6 +10,7 @@ TagManager:
   - Rope ladder
   - Balancing pole
   - Ring master
+  - Pedestal
   layers:
   - Default
   - TransparentFX
