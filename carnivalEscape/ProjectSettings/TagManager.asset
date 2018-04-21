@@ -9,6 +9,7 @@ TagManager:
   - playerBody
   - Rope ladder
   - Balancing pole
+  - Ring master
   layers:
   - Default
   - TransparentFX
