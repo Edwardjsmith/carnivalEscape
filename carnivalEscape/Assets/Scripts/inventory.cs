@@ -3,38 +3,49 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
+
 public class inventory : MonoBehaviour {
 
-    public Button axe;
-
-    public static bool equipAxe = false;
-
+   
+   
+    public Button[] buttons;
+    
+    
     // Use this for initialization
     void Start ()
     {
-        axe.gameObject.SetActive(false);
-        gameObject.SetActive(false);
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-		if(playerLook.hasAxe == true)
+        for (int i = 0; i < buttons.Length; i++)
         {
-            axe.gameObject.SetActive(true);
-            if(!equipAxe)
-            {
-                axe.GetComponentInChildren<Text>().text = "Equip axe?";
-            }
-            else
-            {
-                axe.GetComponentInChildren<Text>().text = "Unequip axe?";
+            buttons[i].gameObject.SetActive(false);
+        }
+        gameObject.SetActive(false);
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        for (int i = 0; i < buttons.Length; i++)
+        {
+                if (playerLook.Instance.hasItem[i] && buttons[i].gameObject.tag == playerLook.Instance.collectableItems[i].gameObject.tag)
+                {
+                    buttons[i].gameObject.SetActive(true);
+
+                    if (!playerLook.Instance.collectableItems[i].activeSelf)
+                    {
+                        buttons[i].GetComponentInChildren<Text>().text = "Equip " + playerLook.Instance.collectableItems[i].gameObject.tag + "?";
+                    }
+                    else
+                    {
+                        buttons[i].GetComponentInChildren<Text>().text = "Unequip " + playerLook.Instance.collectableItems[i].gameObject.tag + "?";
+                    }
+                }
             }
         }
-	}
 
-    public void updateAxe()
-    {
-        equipAxe = !equipAxe;
-    }
+  
 }
+
+   
+

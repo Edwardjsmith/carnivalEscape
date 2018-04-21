@@ -5,23 +5,45 @@ using UnityEngine.UI;
 
 public class playerLook : MonoBehaviour
 {
+    private static playerLook instance;
+
     public GameObject inv;
-    public GameObject axe;
+
     bool inventoryActive = false;
     GameObject playerBody;
     public float mouseSensitivity;
     bool seenObject;
 
+    public GameObject[] collectableItems;
+
     public Text seenObjectText;
 
     float xAxisClamp = 0.0f;
     public bool carry;
-  
 
-    public static bool hasAxe = false;
+    bool equipItem;
+
+    public bool[] hasItem;
+
+
+    public static playerLook Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+
 
     private void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+        instance = this;
+
         //Lock cursor to centre of screen
         Cursor.lockState = CursorLockMode.Locked;
         playerBody = GameObject.FindGameObjectWithTag("playerBody");
@@ -30,8 +52,13 @@ public class playerLook : MonoBehaviour
         seenObjectText.gameObject.SetActive(false);
         carry = false;
 
-        axe.SetActive(false);
+        hasItem = new bool[collectableItems.Length];
 
+        for (int i = 0; i < collectableItems.Length; i++)
+        {
+            collectableItems[i].SetActive(false);
+            equipItem = false;
+        }
 
     }
 
@@ -52,14 +79,6 @@ public class playerLook : MonoBehaviour
             lookAtObject();
         }
 
-        if(inventory.equipAxe == true)
-        {
-            axe.SetActive(true);
-        }
-        else
-        {
-            axe.SetActive(false);
-        }
     }
     void rotateView()
     {
@@ -112,15 +131,17 @@ public class playerLook : MonoBehaviour
             seenObjectText.GetComponent<Text>().text = objectHit.collider.tag.ToString();
             seenObjectText.gameObject.SetActive(true);
 
-            if (objectHit.collider.tag == "Axe")
+            for (int i = 0; i < collectableItems.Length; i++)
             {
-                if (Input.GetButton("Fire1"))
+                if (objectHit.collider.tag == collectableItems[i].gameObject.tag)
                 {
-                    objectHit.transform.gameObject.SetActive(false);
-                    hasAxe = true;
+                    if (Input.GetButton("Fire1"))
+                    {
+                        objectHit.transform.gameObject.SetActive(false);
+                        hasItem[i] = true;
+                    }
                 }
             }
-
 
             if (objectHit.transform.GetComponent<dropOnCollision>())
             {
@@ -150,10 +171,33 @@ public class playerLook : MonoBehaviour
         {
             seenObjectText.gameObject.SetActive(false);
         }
-
-         
         }
-    
+    public void updateEquip(GameObject obj)
+    {
+        equipItem = !equipItem;
+
+        for (int i = 0; i < collectableItems.Length; i++)
+        {
+            if (obj.tag == collectableItems[i].tag)
+            {
+                if (equipItem)
+                {
+                    collectableItems[i].SetActive(true);
+                }
+                else
+                {
+                    collectableItems[i].SetActive(false);
+                }
+            }
+            else
+            {
+                collectableItems[i].SetActive(false);
+            }
+        }
+            
+    }
 }
 
+    
+    
 
