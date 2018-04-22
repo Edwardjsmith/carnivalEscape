@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class playerLook : MonoBehaviour
 {
+    public Texture2D axeHandle;
+    public Texture2D axeHead;
+
     public Text tagText;
     public Text crosshair;
 
@@ -49,6 +52,9 @@ public class playerLook : MonoBehaviour
     public bool playerDead = false;
 
     public bool UIactive = true;
+
+    bool hasHandle = false;
+    bool hasAxehead = false;
 
     public static playerLook Instance
     {
@@ -95,6 +101,14 @@ public class playerLook : MonoBehaviour
 
     void OnGUI()
     {
+        if(hasAxehead)
+        {
+            GUI.DrawTexture(new Rect(Screen.width - axeHead.width / 6, Screen.height - axeHead.height / 8, axeHead.width / 6, axeHead.height / 6), axeHead);
+        }
+        if(hasHandle)
+        {
+            GUI.DrawTexture(new Rect(Screen.width - axeHead.width / 6 - 30, Screen.height - axeHead.height / 6, axeHandle.width / 6, axeHandle.height / 6), axeHandle);
+        }
         int minutes = Mathf.FloorToInt(timer / 60F);
         int seconds = Mathf.FloorToInt(timer - minutes * 60);
         string clock = string.Format("{0:0}:{1:00}", minutes, seconds);
@@ -233,6 +247,35 @@ public class playerLook : MonoBehaviour
                         hasItem[i] = true;
                     }
                 }
+                if(objectHit.collider.tag == "axeHead")
+                {
+                    if (Input.GetButton("Fire1"))
+                    {
+                        objectHit.transform.gameObject.SetActive(false);
+                        hasAxehead = true;
+                    }
+                }
+                if (objectHit.collider.tag == "axeHead")
+                {
+                    if (Input.GetButton("Fire1"))
+                    {
+                        objectHit.transform.gameObject.SetActive(false);
+                        hasAxehead = true;
+                    }
+                }
+                if (objectHit.collider.tag == "axeHandle")
+                {
+                    if (Input.GetButton("Fire1"))
+                    {
+                        objectHit.transform.gameObject.SetActive(false);
+                        hasHandle = true;
+                    }
+                }
+                if(hasAxehead == true && hasHandle == true && collectableItems[i].gameObject.tag == "Axe")
+                {
+                    hasItem[i] = true;
+                }
+
             }
 
             if (objectHit.transform.GetComponent<dropOnCollision>())
