@@ -280,10 +280,13 @@ public class playerLook : MonoBehaviour
 
             if (objectHit.transform.GetComponent<dropOnCollision>())
             {
+                var objectTransform = objectHit.transform.rotation;
 
                 if (Input.GetButton("Fire1") && objectHit.collider.tag != "Floor" && objectHit.transform.GetComponent<dropOnCollision>().carry == true)
                 {
+                    
                     objectHit.transform.SetParent(gameObject.transform);
+                    objectHit.transform.rotation = objectTransform;
 
                     if (objectHit.transform.GetComponent<Rigidbody>())
                     {

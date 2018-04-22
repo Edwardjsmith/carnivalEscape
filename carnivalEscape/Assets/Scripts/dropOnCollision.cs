@@ -8,7 +8,7 @@ public class dropOnCollision : MonoBehaviour
 
     private void Update()
     {
-        carry = true;
+        
     }
 
     private void OnTriggerStay(Collider collision)
@@ -16,6 +16,10 @@ public class dropOnCollision : MonoBehaviour
         if (transform.parent != null && collision)
         {
             carry = false;
+        }
+        else
+        {
+            carry = true;
         }
      
         
