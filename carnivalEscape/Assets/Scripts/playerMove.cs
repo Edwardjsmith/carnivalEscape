@@ -18,7 +18,10 @@ public class playerMove : MonoBehaviour
 
     private void Update()
     {
-        movement();
+        if (!playerLook.Instance.playerDead)
+        {
+            movement();
+        }
     }
 
     void movement()

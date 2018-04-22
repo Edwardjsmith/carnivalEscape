@@ -11,6 +11,8 @@ public class inventory : MonoBehaviour {
    
    
     public Button[] buttons;
+
+
     
     
     // Use this for initialization
@@ -26,6 +28,11 @@ public class inventory : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if(gameObject.activeSelf)
+        {
+            playerLook.Instance.UIactive = false;
+        }
+
         for (int i = 0; i < buttons.Length; i++)
         {
                 if (playerLook.Instance.hasItem[i] && buttons[i].gameObject.tag == playerLook.Instance.collectableItems[i].gameObject.tag)

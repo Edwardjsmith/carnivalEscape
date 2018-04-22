@@ -1,10 +1,17 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class playerLook : MonoBehaviour
 {
+    public Text tagText;
+    public Text crosshair;
+
+    public Texture2D restartTex;
+    public Texture2D quitTex;
+
     private static playerLook instance;
 
     public GameObject inv;
@@ -26,8 +33,9 @@ public class playerLook : MonoBehaviour
     public bool[] hasItem;
 
     float timer;
-    int hour = 10; 
-    int fiftyMins = 5;
+
+    int hour = 3600; 
+    int fiftyMins = 3000;
 
     public bool tenMinsRemaining = false;
 
@@ -38,7 +46,9 @@ public class playerLook : MonoBehaviour
     private float alpha = 0.0f;
     private float fadeDir = -1;
 
-    bool playerDead = false;
+    public bool playerDead = false;
+
+    public bool UIactive = true;
 
     public static playerLook Instance
     {
@@ -52,7 +62,6 @@ public class playerLook : MonoBehaviour
     private void Awake()
     {
      
-
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -88,12 +97,13 @@ public class playerLook : MonoBehaviour
     {
         int minutes = Mathf.FloorToInt(timer / 60F);
         int seconds = Mathf.FloorToInt(timer - minutes * 60);
-        string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
+        string clock = string.Format("{0:0}:{1:00}", minutes, seconds);
 
-        GUI.Label(new Rect(10, 10, 250, 100), niceTime);
+        GUI.Label(new Rect(10, 10, 250, 100), clock);
 
-        if(playerDead)
+        if (playerDead)
         {
+
             alpha -= fadeDir * fadeSpeed * Time.deltaTime;
             alpha = Mathf.Clamp01(alpha);
 
@@ -103,45 +113,67 @@ public class playerLook : MonoBehaviour
 
             GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), fadeTexture);
 
-            if(alpha >= 1)
+            if (alpha >= 1)
             {
+                Cursor.lockState = CursorLockMode.None;
 
+                if (GUI.Button(new Rect(Screen.width / 2 - restartTex.width / 2 / 3, Screen.height / 1.5f, restartTex.width / 3.5f, restartTex.height / 3.5f), restartTex))
+                {
+                    SceneManager.LoadScene(SceneManager.GetActiveScene().path);
+                }
+                if (GUI.Button(new Rect(Screen.width / 2 - quitTex.width / 2 / 3, Screen.height / 3.4f, quitTex.width / 3.5f, quitTex.height / 3.5f), quitTex))
+                {
+                    Application.Quit();
+                }
             }
         }
-
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-
-        if(timer >= hour)
+        if(UIactive == false)
         {
-            playerDead = true;
-            Debug.Log("You failed");
+            tagText.gameObject.SetActive(false);
+            crosshair.gameObject.SetActive(false);
         }
-        if(timer >= fiftyMins)
+        else
         {
-            tenMinsRemaining = true;
+            tagText.gameObject.SetActive(true);
+            crosshair.gameObject.SetActive(true);
         }
+        UIactive = true;
 
-
-        if (Input.GetKeyDown(KeyCode.I))
+        if (!playerDead)
         {
-            inventoryActive = !inventoryActive;
-            inv.SetActive(inventoryActive);
-            Cursor.lockState = CursorLockMode.None;
-        }
+            timer += Time.deltaTime;
 
-        if (!inventoryActive)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            rotateView();
-            lookAtObject();
-        }
+            if (timer >= hour)
+            {
+                playerDead = true;
 
+            }
+            if (timer >= fiftyMins)
+            {
+                tenMinsRemaining = true;
+            }
+
+
+            if (Input.GetKeyDown(KeyCode.I))
+            {
+                inventoryActive = !inventoryActive;
+                inv.SetActive(inventoryActive);
+                Cursor.lockState = CursorLockMode.None;
+            }
+
+            if (!inventoryActive)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                rotateView();
+                lookAtObject();
+            }
+        }
     }
     void rotateView()
     {
