@@ -5,12 +5,14 @@ using UnityEngine;
 public class playerMove : MonoBehaviour
 {
     private CharacterController playerController;
+    GameObject playerSpotlight;
     
     public float speed;
 
 
     private void Awake()
     {
+        playerSpotlight = GameObject.FindGameObjectWithTag("PlayerSpotlight");
         playerController = GetComponent<CharacterController>();
     }
 
@@ -35,7 +37,10 @@ public class playerMove : MonoBehaviour
         //Implement said moves
         playerController.SimpleMove(moveHorizontal);
         playerController.SimpleMove(moveForward);
-    }
 
+        var lightPos = new Vector3(transform.position.x, playerSpotlight.transform.position.y, transform.position.z);
+
+        playerSpotlight.transform.position = lightPos;
+    }
   
 }

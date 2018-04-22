@@ -26,8 +26,19 @@ public class playerLook : MonoBehaviour
     public bool[] hasItem;
 
     float timer;
-    int hour = 3600;
-   
+    int hour = 10; 
+    int fiftyMins = 5;
+
+    public bool tenMinsRemaining = false;
+
+    public Texture2D fadeTexture;
+    float fadeSpeed = 0.2f;
+    float drawDepth = -1000;
+
+    private float alpha = 0.0f;
+    private float fadeDir = -1;
+
+    bool playerDead = false;
 
     public static playerLook Instance
     {
@@ -67,6 +78,12 @@ public class playerLook : MonoBehaviour
 
     }
 
+
+
+  
+        
+
+
     void OnGUI()
     {
         int minutes = Mathf.FloorToInt(timer / 60F);
@@ -74,6 +91,24 @@ public class playerLook : MonoBehaviour
         string niceTime = string.Format("{0:0}:{1:00}", minutes, seconds);
 
         GUI.Label(new Rect(10, 10, 250, 100), niceTime);
+
+        if(playerDead)
+        {
+            alpha -= fadeDir * fadeSpeed * Time.deltaTime;
+            alpha = Mathf.Clamp01(alpha);
+
+            GUI.color = new Color(GUI.color.r, GUI.color.g, GUI.color.b, alpha);
+
+            GUI.depth = (int)drawDepth;
+
+            GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), fadeTexture);
+
+            if(alpha >= 1)
+            {
+
+            }
+        }
+
     }
 
 
@@ -84,8 +119,14 @@ public class playerLook : MonoBehaviour
 
         if(timer >= hour)
         {
+            playerDead = true;
             Debug.Log("You failed");
         }
+        if(timer >= fiftyMins)
+        {
+            tenMinsRemaining = true;
+        }
+
 
         if (Input.GetKeyDown(KeyCode.I))
         {

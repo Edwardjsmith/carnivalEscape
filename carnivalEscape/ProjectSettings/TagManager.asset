@@ -11,6 +11,9 @@ TagManager:
   - Balancing pole
   - Ring master
   - Pedestal
+  - Roof
+  - Wall
+  - PlayerSpotlight
   layers:
   - Default
   - TransparentFX
