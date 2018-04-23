@@ -17,7 +17,7 @@ public class playerLook : MonoBehaviour
 
     private static playerLook instance;
 
-    public GameObject inv;
+    public GameObject inventory;
 
     bool inventoryActive = false;
     GameObject playerBody;
@@ -51,7 +51,7 @@ public class playerLook : MonoBehaviour
 
     public bool playerDead = false;
 
-    public bool UIactive = true;
+    public bool crosshairActive = true;
 
     bool hasHandle = false;
     bool hasAxehead = false;
@@ -147,7 +147,7 @@ public class playerLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(UIactive == false)
+        if(crosshairActive == false)
         {
             tagText.gameObject.SetActive(false);
             crosshair.gameObject.SetActive(false);
@@ -157,7 +157,7 @@ public class playerLook : MonoBehaviour
             tagText.gameObject.SetActive(true);
             crosshair.gameObject.SetActive(true);
         }
-        UIactive = true;
+        crosshairActive = true;
 
         if (!playerDead)
         {
@@ -177,7 +177,7 @@ public class playerLook : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.I))
             {
                 inventoryActive = !inventoryActive;
-                inv.SetActive(inventoryActive);
+                inventory.SetActive(inventoryActive);
                 Cursor.lockState = CursorLockMode.None;
             }
 
@@ -282,7 +282,7 @@ public class playerLook : MonoBehaviour
             {
                 var objectTransform = objectHit.transform.rotation;
 
-                if (Input.GetButton("Fire1") && objectHit.collider.tag != "Floor" && objectHit.transform.GetComponent<dropOnCollision>().carry == true)
+                if (Input.GetButton("Fire1") && objectHit.collider.tag != "Floor" && objectHit.transform.GetComponent<dropOnCollision>().carryObject == true)
                 {
                     
                     objectHit.transform.SetParent(gameObject.transform);

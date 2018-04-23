@@ -30,7 +30,7 @@ public class inventory : MonoBehaviour {
     {
         if(gameObject.activeSelf)
         {
-            playerLook.Instance.UIactive = false;
+            playerLook.Instance.crosshairActive = false;
         }
 
         for (int i = 0; i < buttons.Length; i++)

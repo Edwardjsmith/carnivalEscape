@@ -4,23 +4,22 @@ using UnityEngine;
 
 public class dropOnCollision : MonoBehaviour
 {
-    public bool carry;
+    public bool carryObject;
 
     private void Update()
     {
-        
+        carryObject = true;
     }
 
     private void OnTriggerStay(Collider collision)
     {
-        if (transform.parent != null && collision)
+        if (collision.tag == "Floor" || collision.tag == "Wall")
         {
-            carry = false;
+            carryObject = false;
         }
-        else
-        {
-            carry = true;
-        }
+        
+            
+        
      
         
     }
