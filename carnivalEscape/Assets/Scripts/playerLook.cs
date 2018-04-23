@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+
 public class playerLook : MonoBehaviour
 {
     public Texture2D axeHandle;
@@ -51,10 +52,16 @@ public class playerLook : MonoBehaviour
 
     public bool playerDead = false;
 
+    string keypadInput;
+
     public bool crosshairActive = true;
 
     bool hasHandle = false;
     bool hasAxehead = false;
+    bool keypad = false;
+    string keypadPassword = "105";
+
+    GUIStyle boxStyle;
 
     public static playerLook Instance
     {
@@ -67,7 +74,7 @@ public class playerLook : MonoBehaviour
 
     private void Awake()
     {
-     
+      
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -90,7 +97,7 @@ public class playerLook : MonoBehaviour
             collectableItems[i].SetActive(false);
             equipItem = false;
         }
-
+        
     }
 
 
@@ -100,7 +107,89 @@ public class playerLook : MonoBehaviour
 
 
     void OnGUI()
-    {
+    { 
+        if (keypad)
+        {
+            Cursor.lockState = CursorLockMode.None;
+
+            boxStyle = new GUIStyle(GUI.skin.box);
+
+            if (keypadInput == keypadPassword)
+            {
+                boxStyle.normal.textColor = Color.green;
+
+                Destroy(GameObject.FindGameObjectWithTag("Keypad"), 1.0f);
+
+                if (!GameObject.FindGameObjectWithTag("Keypad"))
+                {
+                    keypad = false;
+                }
+
+            }
+            else
+            {
+                boxStyle.normal.textColor = Color.white;
+            }
+
+            GUI.Box(new Rect(0, 0, 320, 455), "");
+            GUI.Box(new Rect(5, 5, 310, 25), keypadInput, boxStyle);
+
+            if (GUI.Button(new Rect(5, 35, 100, 100), "1"))
+            {
+                keypadInput += "1";
+            }
+            if (GUI.Button(new Rect(110, 35, 100, 100), "2"))
+            {
+                keypadInput += "2";
+            }
+            if (GUI.Button(new Rect(215, 35, 100, 100), "3"))
+            {
+                keypadInput += "3";
+            }
+            if (GUI.Button(new Rect(5, 140, 100, 100), "4"))
+            {
+                keypadInput += "4";
+            }
+            if (GUI.Button(new Rect(110, 140, 100, 100), "5"))
+            {
+                keypadInput += "5";
+            }
+            if (GUI.Button(new Rect(215, 140, 100, 100), "6"))
+            {
+                keypadInput += "6";
+            }
+            if (GUI.Button(new Rect(5, 245, 100, 100), "7"))
+            {
+                keypadInput += "7";
+            }
+            if (GUI.Button(new Rect(110, 245, 100, 100), "8"))
+            {
+                keypadInput += "8";
+            }
+            if (GUI.Button(new Rect(215, 245, 100, 100), "9"))
+            {
+                keypadInput += "9";
+            }
+            if (GUI.Button(new Rect(110, 350, 100, 100), "0"))
+            {
+                keypadInput += "0";
+            }
+            if (GUI.Button(new Rect(5, 350, 100, 100), "Clear"))
+            {
+                keypadInput = "";
+            }
+            if (GUI.Button(new Rect(215, 350, 100, 100), "Exit"))
+            {
+                keypad = false;
+            }
+
+            if(keypadInput != null && keypadInput.Length > 3)
+            {
+                keypadInput = "";
+            }
+        }
+       
+
         if(hasAxehead)
         {
             GUI.DrawTexture(new Rect(Screen.width - axeHead.width / 6, Screen.height - axeHead.height / 8, axeHead.width / 6, axeHead.height / 6), axeHead);
@@ -173,19 +262,21 @@ public class playerLook : MonoBehaviour
                 tenMinsRemaining = true;
             }
 
-
-            if (Input.GetKeyDown(KeyCode.I))
+            if (!keypad)
             {
-                inventoryActive = !inventoryActive;
-                inventory.SetActive(inventoryActive);
-                Cursor.lockState = CursorLockMode.None;
-            }
+                if (Input.GetKeyDown(KeyCode.I))
+                {
+                    inventoryActive = !inventoryActive;
+                    inventory.SetActive(inventoryActive);
+                    Cursor.lockState = CursorLockMode.None;
+                }
 
-            if (!inventoryActive)
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-                rotateView();
-                lookAtObject();
+                if (!inventoryActive)
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                    rotateView();
+                    lookAtObject();
+                }
             }
         }
     }
@@ -276,6 +367,13 @@ public class playerLook : MonoBehaviour
                     hasItem[i] = true;
                 }
 
+                if (objectHit.collider.tag == "Keypad")
+                {
+                    if (Input.GetButton("Fire1"))
+                    {
+                        keypad = true;
+                    }
+                }
             }
 
             if (objectHit.transform.GetComponent<dropOnCollision>())

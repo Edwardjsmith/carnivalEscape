@@ -16,6 +16,7 @@ TagManager:
   - PlayerSpotlight
   - axeHead
   - axeHandle
+  - Keypad
   layers:
   - Default
   - TransparentFX
