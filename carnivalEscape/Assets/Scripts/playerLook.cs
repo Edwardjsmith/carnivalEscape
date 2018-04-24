@@ -70,6 +70,7 @@ public class playerLook : MonoBehaviour
     int currentPassword = 0;
 
     GameObject rope1;
+    GameObject selector;
     public static playerLook Instance
     {
         get
@@ -111,6 +112,7 @@ public class playerLook : MonoBehaviour
         {
             rope1.GetComponent<Collider>().enabled = false;
         }
+        selector = GameObject.FindGameObjectWithTag("selector");
     }
 
 
@@ -354,6 +356,8 @@ public class playerLook : MonoBehaviour
 
         if (seenObject)
         {
+            var otherWheel = GameObject.FindGameObjectWithTag("codePuzzle2");
+            
             seenObjectText.GetComponent<Text>().text = objectHit.collider.tag.ToString();
             seenObjectText.gameObject.SetActive(true);
 
@@ -408,15 +412,22 @@ public class playerLook : MonoBehaviour
             {
                 if (Input.GetButton("Fire1"))
                 {
-                    var trans = new Quaternion(objectHit.transform.rotation.x, Mathf.LerpAngle(objectHit.transform.rotation.y, objectHit.transform.rotation.y * 45, 2), objectHit.transform.rotation.z, objectHit.transform.rotation.w);
-
-
-                    objectHit.transform.rotation = trans;
+                    objectHit.transform.RotateAround(objectHit.collider.bounds.center, Vector3.right, 45  * Time.deltaTime);
+                  
+                    otherWheel.transform.RotateAround(otherWheel.GetComponent<Collider>().bounds.center, Vector3.right, 45 * Time.deltaTime);
                 }
             }
-        
 
-        if (objectHit.transform.GetComponent<dropOnCollision>())
+            if (objectHit.collider.tag == "selector")
+            {
+                if (Input.GetButton("Fire1"))
+                {
+                    objectHit.transform.RotateAround(otherWheel.GetComponent<Collider>().bounds.center, Vector3.right, 45 * Time.deltaTime);
+                }
+            }
+
+
+            if (objectHit.transform.GetComponent<dropOnCollision>())
         {
             var objectTransform = objectHit.transform.rotation;
 

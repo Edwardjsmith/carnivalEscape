@@ -19,6 +19,8 @@ TagManager:
   - Keypad
   - codePuzzle
   - rope1
+  - codePuzzle2
+  - selector
   layers:
   - Default
   - TransparentFX
