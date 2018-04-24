@@ -17,6 +17,7 @@ TagManager:
   - axeHead
   - axeHandle
   - Keypad
+  - codePuzzle
   layers:
   - Default
   - TransparentFX

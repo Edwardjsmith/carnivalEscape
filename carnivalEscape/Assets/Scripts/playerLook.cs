@@ -38,7 +38,7 @@ public class playerLook : MonoBehaviour
 
     float timer;
 
-    int hour = 3600; 
+    int hour = 3600;
     int fiftyMins = 3000;
 
     public bool tenMinsRemaining = false;
@@ -58,11 +58,14 @@ public class playerLook : MonoBehaviour
 
     bool hasHandle = false;
     bool hasAxehead = false;
-    public bool keypad = false;
+
     string keypadPassword = "105";
 
     GUIStyle boxStyle;
-    GameObject keypadObj;
+
+    public GameObject[] keypadObj;
+    public bool[] keypad;
+
 
     public static playerLook Instance
     {
@@ -75,7 +78,7 @@ public class playerLook : MonoBehaviour
 
     private void Awake()
     {
-      
+
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -99,111 +102,120 @@ public class playerLook : MonoBehaviour
             equipItem = false;
         }
 
-        keypadObj = GameObject.FindGameObjectWithTag("Keypad");
+        keypad = new bool[keypadObj.Length];
+
+        for (int i = 0; i < keypad.Length; i++)
+        {
+            keypad[i] = false;
+        }
+
     }
 
 
 
-  
-        
+
+
 
 
     void OnGUI()
-    { 
-        if (keypad)
+    {
+        for (int i = 0; i < keypadObj.Length; i++)
         {
-            Cursor.lockState = CursorLockMode.None;
-
-            boxStyle = new GUIStyle(GUI.skin.box);
-
-            if (keypadInput == keypadPassword)
+            if (keypad[i])
             {
-                boxStyle.normal.textColor = Color.green;
 
-                if (keypadObj != null)
+                Cursor.lockState = CursorLockMode.None;
+
+                boxStyle = new GUIStyle(GUI.skin.box);
+
+                if (keypadInput == keypadPassword)
                 {
-                    keypadObj.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1, Mathf.Lerp(keypadObj.GetComponent<MeshRenderer>().material.color.a, -0.1f, 1 * Time.deltaTime ));
+                    boxStyle.normal.textColor = Color.green;
 
-                    if (keypadObj.GetComponent<MeshRenderer>().material.color.a <= 0)
+                    if (keypadObj != null)
                     {
-                        Destroy(keypadObj);
+                        keypadObj[i].GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1, Mathf.Lerp(keypadObj[i].GetComponent<MeshRenderer>().material.color.a, -0.1f, 1 * Time.deltaTime));
+
+                        if (keypadObj[i].GetComponent<MeshRenderer>().material.color.a <= 0)
+                        {
+                            Destroy(keypadObj[i]);
+                            keypad[i] = false;
+                        }
                     }
+
+
                 }
-                if (!GameObject.FindGameObjectWithTag("Keypad"))
+                else
                 {
-                    keypad = false;
+                    boxStyle.normal.textColor = Color.white;
                 }
 
-            }
-            else
-            {
-                boxStyle.normal.textColor = Color.white;
-            }
 
-            GUI.Box(new Rect(0, 0, 320, 455), "");
-            GUI.Box(new Rect(5, 5, 310, 25), keypadInput, boxStyle);
+                GUI.Box(new Rect(0, 0, 320, 455), "");
+                GUI.Box(new Rect(5, 5, 310, 25), keypadInput, boxStyle);
 
-            if (GUI.Button(new Rect(5, 35, 100, 100), "1"))
-            {
-                keypadInput += "1";
-            }
-            if (GUI.Button(new Rect(110, 35, 100, 100), "2"))
-            {
-                keypadInput += "2";
-            }
-            if (GUI.Button(new Rect(215, 35, 100, 100), "3"))
-            {
-                keypadInput += "3";
-            }
-            if (GUI.Button(new Rect(5, 140, 100, 100), "4"))
-            {
-                keypadInput += "4";
-            }
-            if (GUI.Button(new Rect(110, 140, 100, 100), "5"))
-            {
-                keypadInput += "5";
-            }
-            if (GUI.Button(new Rect(215, 140, 100, 100), "6"))
-            {
-                keypadInput += "6";
-            }
-            if (GUI.Button(new Rect(5, 245, 100, 100), "7"))
-            {
-                keypadInput += "7";
-            }
-            if (GUI.Button(new Rect(110, 245, 100, 100), "8"))
-            {
-                keypadInput += "8";
-            }
-            if (GUI.Button(new Rect(215, 245, 100, 100), "9"))
-            {
-                keypadInput += "9";
-            }
-            if (GUI.Button(new Rect(110, 350, 100, 100), "0"))
-            {
-                keypadInput += "0";
-            }
-            if (GUI.Button(new Rect(5, 350, 100, 100), "Clear"))
-            {
-                keypadInput = "";
-            }
-            if (GUI.Button(new Rect(215, 350, 100, 100), "Exit"))
-            {
-                keypad = false;
-            }
+                if (GUI.Button(new Rect(5, 35, 100, 100), "1"))
+                {
+                    keypadInput += "1";
+                }
+                if (GUI.Button(new Rect(110, 35, 100, 100), "2"))
+                {
+                    keypadInput += "2";
+                }
+                if (GUI.Button(new Rect(215, 35, 100, 100), "3"))
+                {
+                    keypadInput += "3";
+                }
+                if (GUI.Button(new Rect(5, 140, 100, 100), "4"))
+                {
+                    keypadInput += "4";
+                }
+                if (GUI.Button(new Rect(110, 140, 100, 100), "5"))
+                {
+                    keypadInput += "5";
+                }
+                if (GUI.Button(new Rect(215, 140, 100, 100), "6"))
+                {
+                    keypadInput += "6";
+                }
+                if (GUI.Button(new Rect(5, 245, 100, 100), "7"))
+                {
+                    keypadInput += "7";
+                }
+                if (GUI.Button(new Rect(110, 245, 100, 100), "8"))
+                {
+                    keypadInput += "8";
+                }
+                if (GUI.Button(new Rect(215, 245, 100, 100), "9"))
+                {
+                    keypadInput += "9";
+                }
+                if (GUI.Button(new Rect(110, 350, 100, 100), "0"))
+                {
+                    keypadInput += "0";
+                }
+                if (GUI.Button(new Rect(5, 350, 100, 100), "Clear"))
+                {
+                    keypadInput = "";
+                }
+                if (GUI.Button(new Rect(215, 350, 100, 100), "Exit"))
+                {
+                    keypad[i] = false;
+                }
 
-            if(keypadInput != null && keypadInput.Length > 3)
-            {
-                keypadInput = "";
+                if (keypadInput != null && keypadInput.Length > 3)
+                {
+                    keypadInput = "";
+                }
             }
         }
-       
 
-        if(hasAxehead)
+
+        if (hasAxehead)
         {
             GUI.DrawTexture(new Rect(Screen.width - axeHead.width / 6, Screen.height - axeHead.height / 8, axeHead.width / 6, axeHead.height / 6), axeHead);
         }
-        if(hasHandle)
+        if (hasHandle)
         {
             GUI.DrawTexture(new Rect(Screen.width - axeHead.width / 6 - 30, Screen.height - axeHead.height / 6, axeHandle.width / 6, axeHandle.height / 6), axeHandle);
         }
@@ -270,21 +282,23 @@ public class playerLook : MonoBehaviour
             {
                 tenMinsRemaining = true;
             }
-
-            if (!keypad)
+            for(int i = 0; i < keypad.Length; i++)
             {
-                if (Input.GetKeyDown(KeyCode.I))
+                if (!keypad[i])
                 {
-                    inventoryActive = !inventoryActive;
-                    inventory.SetActive(inventoryActive);
-                    Cursor.lockState = CursorLockMode.None;
-                }
+                    if (Input.GetKeyDown(KeyCode.I))
+                    {
+                        inventoryActive = !inventoryActive;
+                        inventory.SetActive(inventoryActive);
+                        Cursor.lockState = CursorLockMode.None;
+                    }
 
-                if (!inventoryActive)
-                {
-                    Cursor.lockState = CursorLockMode.Locked;
-                    rotateView();
-                    lookAtObject();
+                    if (!inventoryActive)
+                    {
+                        Cursor.lockState = CursorLockMode.Locked;
+                        rotateView();
+                        lookAtObject();
+                    }
                 }
             }
         }
@@ -375,12 +389,24 @@ public class playerLook : MonoBehaviour
                 {
                     hasItem[i] = true;
                 }
-
-                if (objectHit.collider.tag == "Keypad")
+                for (int j = 0; j < keypadObj.Length; i++)
+                {
+                    if (objectHit.collider == keypadObj[j])
+                    {
+                        if (Input.GetButton("Fire1"))
+                        {
+                            keypad[j] = true;
+                        }
+                    }
+                }
+                if (objectHit.collider.tag == "codePuzzle")
                 {
                     if (Input.GetButton("Fire1"))
                     {
-                        keypad = true;
+                        var trans = new Quaternion(objectHit.transform.rotation.x, Mathf.LerpAngle(objectHit.transform.rotation.y, objectHit.transform.rotation.y * 45, 2), objectHit.transform.rotation.z, objectHit.transform.rotation.w);
+
+
+                        objectHit.transform.rotation = trans;
                     }
                 }
             }
