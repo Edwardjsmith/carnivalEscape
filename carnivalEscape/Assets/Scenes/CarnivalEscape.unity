@@ -1428,8 +1428,8 @@ GameObject:
   - component: {fileID: 546978851}
   - component: {fileID: 546978850}
   - component: {fileID: 546978855}
-  - component: {fileID: 546978854}
   - component: {fileID: 546978856}
+  - component: {fileID: 546978854}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -1450,7 +1450,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4897478581d77b54492685ab183f7e51, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1512,7 +1512,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2deb5290e4f345c42bd10941f00c3d0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carryObject: 1
+  carryObject: 0
 --- !u!54 &546978855
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2755,7 +2755,6 @@ GameObject:
   - component: {fileID: 1493966199}
   - component: {fileID: 1493966198}
   - component: {fileID: 1493966197}
-  - component: {fileID: 1493966196}
   - component: {fileID: 1493966202}
   m_Layer: 0
   m_Name: Cube (1)
@@ -2764,18 +2763,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1493966196
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1493966195}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2deb5290e4f345c42bd10941f00c3d0a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  carryObject: 1
 --- !u!54 &1493966197
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2804,7 +2791,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 4897478581d77b54492685ab183f7e51, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3327,6 +3314,7 @@ MonoBehaviour:
   fadeTexture: {fileID: 2800000, guid: 85493c70d0981344aaa69352f6ba2790, type: 3}
   playerDead: 0
   crosshairActive: 1
+  keypad: 0
 --- !u!81 &1820973488
 AudioListener:
   m_ObjectHideFlags: 0

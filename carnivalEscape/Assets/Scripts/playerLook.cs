@@ -58,10 +58,11 @@ public class playerLook : MonoBehaviour
 
     bool hasHandle = false;
     bool hasAxehead = false;
-    bool keypad = false;
+    public bool keypad = false;
     string keypadPassword = "105";
 
     GUIStyle boxStyle;
+    GameObject keypadObj;
 
     public static playerLook Instance
     {
@@ -97,7 +98,8 @@ public class playerLook : MonoBehaviour
             collectableItems[i].SetActive(false);
             equipItem = false;
         }
-        
+
+        keypadObj = GameObject.FindGameObjectWithTag("Keypad");
     }
 
 
@@ -118,8 +120,15 @@ public class playerLook : MonoBehaviour
             {
                 boxStyle.normal.textColor = Color.green;
 
-                Destroy(GameObject.FindGameObjectWithTag("Keypad"), 1.0f);
+                if (keypadObj != null)
+                {
+                    keypadObj.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1, Mathf.Lerp(keypadObj.GetComponent<MeshRenderer>().material.color.a, -0.1f, 1 * Time.deltaTime ));
 
+                    if (keypadObj.GetComponent<MeshRenderer>().material.color.a <= 0)
+                    {
+                        Destroy(keypadObj);
+                    }
+                }
                 if (!GameObject.FindGameObjectWithTag("Keypad"))
                 {
                     keypad = false;
@@ -400,6 +409,10 @@ public class playerLook : MonoBehaviour
                         objectHit.transform.GetComponent<Rigidbody>().isKinematic = false;
                     }
                 }
+            }
+            else
+            {
+                return;
             }
         }
 
