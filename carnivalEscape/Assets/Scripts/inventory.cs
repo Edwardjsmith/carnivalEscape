@@ -13,8 +13,7 @@ public class inventory : MonoBehaviour {
     public Button[] buttons;
 
 
-    
-    
+ 
     // Use this for initialization
     void Start ()
     {
@@ -23,6 +22,7 @@ public class inventory : MonoBehaviour {
             buttons[i].gameObject.SetActive(false);
         }
         gameObject.SetActive(false);
+
     }
 
     // Update is called once per frame

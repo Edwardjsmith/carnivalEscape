@@ -69,7 +69,7 @@ public class playerLook : MonoBehaviour
     public bool keypad;
     int currentPassword = 0;
 
-
+    GameObject rope1;
     public static playerLook Instance
     {
         get
@@ -105,8 +105,12 @@ public class playerLook : MonoBehaviour
             equipItem = false;
         }
 
-
-      
+        
+        rope1 = GameObject.FindGameObjectWithTag("rope1");
+        if (rope1 != null)
+        {
+            rope1.GetComponent<Collider>().enabled = false;
+        }
     }
 
 
@@ -456,15 +460,23 @@ public class playerLook : MonoBehaviour
 
         for (int i = 0; i < collectableItems.Length; i++)
         {
-            if (obj.tag == collectableItems[i].tag)
+            if (obj.tag == collectableItems[i].gameObject.tag)
             {
                 if (equipItem)
                 {
                     collectableItems[i].SetActive(true);
+                    if(collectableItems[i].tag == "Balancing pole")
+                    {
+                        rope1.GetComponent<Collider>().enabled = true;
+                    }
                 }
                 else
                 {
                     collectableItems[i].SetActive(false);
+                    if (collectableItems[i].tag == "Balancing pole")
+                    {
+                       rope1.GetComponent<Collider>().enabled = false;
+                    }
                 }
             }
             else
