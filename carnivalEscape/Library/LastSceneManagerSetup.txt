@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/CarnivalEscape.unity
+- path: Assets/Scenes/level_sence.unity
   isLoaded: 1
   isActive: 1

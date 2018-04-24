@@ -310,7 +310,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 74a504c15c523b84087016d5b7270094, type: 3}
       propertyPath: m_Name
-      value: lock
+      value: lock1
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 74a504c15c523b84087016d5b7270094, type: 3}
       propertyPath: m_TagString
@@ -766,7 +766,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 74a504c15c523b84087016d5b7270094, type: 3}
       propertyPath: m_Name
-      value: lock
+      value: lock2
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 74a504c15c523b84087016d5b7270094, type: 3}
       propertyPath: m_TagString
@@ -1555,7 +1555,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 74a504c15c523b84087016d5b7270094, type: 3}
       propertyPath: m_Name
-      value: lock
+      value: lock3
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 74a504c15c523b84087016d5b7270094, type: 3}
       propertyPath: m_TagString
@@ -1704,6 +1704,11 @@ Prefab:
       propertyPath: keypadObj.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114846522928384798, guid: a90241aa57eabf143840932c2480671a,
+        type: 2}
+      propertyPath: keypadPassword.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4571776369269236, guid: a90241aa57eabf143840932c2480671a, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0.37435877
@@ -1760,7 +1765,7 @@ Prefab:
         type: 2}
       propertyPath: keypadObj.Array.data[0]
       value: 
-      objectReference: {fileID: 712372465}
+      objectReference: {fileID: 647973337}
     - target: {fileID: 114846522928384798, guid: a90241aa57eabf143840932c2480671a,
         type: 2}
       propertyPath: keypadObj.Array.data[1]
@@ -1770,7 +1775,22 @@ Prefab:
         type: 2}
       propertyPath: keypadObj.Array.data[2]
       value: 
-      objectReference: {fileID: 647973337}
+      objectReference: {fileID: 712372465}
+    - target: {fileID: 114846522928384798, guid: a90241aa57eabf143840932c2480671a,
+        type: 2}
+      propertyPath: keypadPassword.Array.data[0]
+      value: 105
+      objectReference: {fileID: 0}
+    - target: {fileID: 114846522928384798, guid: a90241aa57eabf143840932c2480671a,
+        type: 2}
+      propertyPath: keypadPassword.Array.data[1]
+      value: 111
+      objectReference: {fileID: 0}
+    - target: {fileID: 114846522928384798, guid: a90241aa57eabf143840932c2480671a,
+        type: 2}
+      propertyPath: keypadPassword.Array.data[2]
+      value: 112
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a90241aa57eabf143840932c2480671a, type: 2}
   m_IsPrefabParent: 0
