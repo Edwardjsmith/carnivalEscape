@@ -61,6 +61,8 @@ public class playerLook : MonoBehaviour
 
     public string[] keypadPassword;
 
+    public bool balanceWeights = false;
+
     GUIStyle boxStyle;
 
     public GameObject[] keypadObj;

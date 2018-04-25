@@ -23,6 +23,8 @@ TagManager:
   - selector
   - Press E to climb
   - Ladder
+  - Scale
+  - Pole
   layers:
   - Default
   - TransparentFX

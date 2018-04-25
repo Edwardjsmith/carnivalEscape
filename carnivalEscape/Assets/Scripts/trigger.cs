@@ -6,9 +6,8 @@ public class trigger : MonoBehaviour
 {
     
     public GameObject[] triggerObjects;
-
     public List<GameObject> colliders;
-    
+    public Light spotLight;
     
    
     private void OnCollisionEnter(Collision other)
@@ -21,12 +20,14 @@ public class trigger : MonoBehaviour
 
                 if (triggerObjects.Length == colliders.Count)
                 {
-                    Debug.Log("I am triggered!!!!!!");
+                    playerLook.Instance.balanceWeights = true;
+                    spotLight.color = Color.green;
+                    Destroy(triggerObjects[i]);
                 }
-                else
-                {
-                    Debug.Log("I am not triggered");
-                }
+            }
+            else
+            {
+                spotLight.color = Color.red;
             }
         }
     }
@@ -38,6 +39,7 @@ public class trigger : MonoBehaviour
             if (other.gameObject == triggerObjects[i].gameObject)
             {
                 colliders.Remove(other.gameObject);
+                spotLight.color = Color.white;
             }
         }
 
