@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class playerMove : MonoBehaviour
 {
     private CharacterController playerController;
@@ -14,6 +15,8 @@ public class playerMove : MonoBehaviour
     float vertical;
 
     bool onLadder;
+
+    public GameObject[] deadZones;
 
     private void Awake()
     {
@@ -58,6 +61,7 @@ public class playerMove : MonoBehaviour
         var lightPos = new Vector3(transform.position.x, playerSpotlight.transform.position.y, transform.position.z);
 
         playerSpotlight.transform.position = lightPos;
+
     }
 
     private void OnTriggerStay(Collider other)
@@ -76,6 +80,22 @@ public class playerMove : MonoBehaviour
             onLadder = false;
             gameObject.GetComponent<Rigidbody>().useGravity = true;
         }
+        
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        for (int i = 0; i < deadZones.Length; i++)
+        {
+            if (other.name == deadZones[i].GetComponent<Collider>().name)
+            {
+                //Resets pos if the player either falls on the tight rope or the player simply tries to skip parts of the level
+
+                gameObject.transform.position = other.transform.position;
+            }
+
+        }
+
     }
 }
 
