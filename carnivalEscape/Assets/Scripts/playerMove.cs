@@ -6,7 +6,7 @@ using UnityEngine;
 public class playerMove : MonoBehaviour
 {
     private CharacterController playerController;
-    GameObject playerSpotlight;
+    public GameObject playerSpotlight;
 
     public float speed;
     Vector3 moveForward;
@@ -18,6 +18,13 @@ public class playerMove : MonoBehaviour
 
     public GameObject[] deadZones;
 
+    Vector3 lightPos;
+
+    private void Start()
+    {
+        lightPos = new Vector3(transform.position.x, playerSpotlight.transform.position.y, transform.position.z);
+        playerSpotlight.transform.position = lightPos;
+    }
     private void Awake()
     {
         playerSpotlight = GameObject.FindGameObjectWithTag("PlayerSpotlight");
@@ -58,8 +65,8 @@ public class playerMove : MonoBehaviour
         playerController.SimpleMove(moveHorizontal);
         playerController.SimpleMove(moveForward);
 
-        var lightPos = new Vector3(transform.position.x, playerSpotlight.transform.position.y, transform.position.z);
 
+        lightPos = new Vector3(transform.position.x, playerSpotlight.transform.position.y, transform.position.z);
         playerSpotlight.transform.position = lightPos;
 
     }

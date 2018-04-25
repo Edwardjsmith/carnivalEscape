@@ -7,8 +7,11 @@ public class unitTests {
 
 	[Test]
 	public void unitTestsSimplePasses() {
-		// Use the Assert class to test conditions.
-        //Assert.AreEqual()
+
+        var player = new playerMove();
+        var spotlight = player.playerSpotlight;
+        // Use the Assert class to test conditions.
+        Assert.AreEqual(player.transform.position.x, player.playerSpotlight.transform.position.x);
         
 	}
 
