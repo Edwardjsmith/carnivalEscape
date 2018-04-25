@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311992, g: 0.38074034, b: 0.35872713, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -838,6 +838,22 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 74a504c15c523b84087016d5b7270094, type: 3}
+--- !u!1 &779838615 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 42fc93a354df04e4d8909e97b9bbb109, type: 3}
+  m_PrefabInternal: {fileID: 879824999}
+--- !u!65 &779838616
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 779838615}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.6098804, y: 6.0996437, z: 39.9117}
+  m_Center: {x: 61.026726, y: 1.1013699, z: 19.95585}
 --- !u!114 &804012753 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114846522928384798, guid: a90241aa57eabf143840932c2480671a,
@@ -1052,6 +1068,10 @@ Prefab:
       propertyPath: m_Name
       value: ladder
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 42fc93a354df04e4d8909e97b9bbb109, type: 3}
+      propertyPath: m_TagString
+      value: Ladder
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 42fc93a354df04e4d8909e97b9bbb109, type: 3}
   m_IsPrefabParent: 0
@@ -1059,6 +1079,22 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: 42fc93a354df04e4d8909e97b9bbb109, type: 3}
   m_PrefabInternal: {fileID: 879824999}
+--- !u!1 &889613248 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 42fc93a354df04e4d8909e97b9bbb109, type: 3}
+  m_PrefabInternal: {fileID: 1498744949}
+--- !u!65 &889613253
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 889613248}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 6.145108, y: 8.174247, z: 39.9117}
+  m_Center: {x: 52.191875, y: 2.138672, z: 19.95585}
 --- !u!1001 &891876649
 Prefab:
   m_ObjectHideFlags: 0
@@ -1182,7 +1218,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 42fc93a354df04e4d8909e97b9bbb109, type: 3}
       propertyPath: m_Name
-      value: lader (1)
+      value: ladder
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 42fc93a354df04e4d8909e97b9bbb109, type: 3}
+      propertyPath: m_TagString
+      value: Ladder
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 42fc93a354df04e4d8909e97b9bbb109, type: 3}
@@ -1886,7 +1926,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 42fc93a354df04e4d8909e97b9bbb109, type: 3}
       propertyPath: m_Name
-      value: lader (2)
+      value: ladder
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 42fc93a354df04e4d8909e97b9bbb109, type: 3}
+      propertyPath: m_TagString
+      value: Ladder
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 42fc93a354df04e4d8909e97b9bbb109, type: 3}
@@ -1969,6 +2013,22 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: 0cbeebc3cff88d84783b535750c666f3, type: 3}
   m_PrefabInternal: {fileID: 1518258852}
+--- !u!1 &1518445794 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: 42fc93a354df04e4d8909e97b9bbb109, type: 3}
+  m_PrefabInternal: {fileID: 955061797}
+--- !u!65 &1518445799
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1518445794}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.2436395, y: 6.0438156, z: 39.9117}
+  m_Center: {x: 60.709694, y: 1.0734677, z: 19.95585}
 --- !u!1 &1630353601 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1848162782355810, guid: a90241aa57eabf143840932c2480671a,
@@ -2296,7 +2356,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4571776369269236, guid: a90241aa57eabf143840932c2480671a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 15.6
+      value: 22.8
       objectReference: {fileID: 0}
     - target: {fileID: 4571776369269236, guid: a90241aa57eabf143840932c2480671a, type: 2}
       propertyPath: m_LocalPosition.z

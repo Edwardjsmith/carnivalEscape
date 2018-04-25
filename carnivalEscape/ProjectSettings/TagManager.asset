@@ -21,6 +21,8 @@ TagManager:
   - rope1
   - codePuzzle2
   - selector
+  - Press E to climb
+  - Ladder
   layers:
   - Default
   - TransparentFX

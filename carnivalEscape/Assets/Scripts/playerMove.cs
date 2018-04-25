@@ -6,15 +6,22 @@ public class playerMove : MonoBehaviour
 {
     private CharacterController playerController;
     GameObject playerSpotlight;
-    
-    public float speed;
 
+    public float speed;
+    Vector3 moveForward;
+
+    float horizontal;
+    float vertical;
+
+    bool onLadder;
 
     private void Awake()
     {
         playerSpotlight = GameObject.FindGameObjectWithTag("PlayerSpotlight");
         playerController = GetComponent<CharacterController>();
+
     }
+
 
     private void Update()
     {
@@ -26,16 +33,23 @@ public class playerMove : MonoBehaviour
 
     void movement()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-
         //Movement
+        horizontal = Input.GetAxis("Horizontal");
+        vertical = Input.GetAxis("Vertical");
+
 
         //Move side to side
         Vector3 moveHorizontal = transform.right * horizontal * speed * Time.deltaTime;
 
         //Move forward and back
-        Vector3 moveForward = transform.forward * vertical * speed * Time.deltaTime;
+        if (!onLadder)
+        {
+            moveForward = transform.forward * vertical * speed * Time.deltaTime;
+        }
+        else
+        {
+            transform.position += transform.up * Time.deltaTime * speed;
+        }
 
         //Implement said moves
         playerController.SimpleMove(moveHorizontal);
@@ -45,5 +59,24 @@ public class playerMove : MonoBehaviour
 
         playerSpotlight.transform.position = lightPos;
     }
-  
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Ladder")
+        {
+            onLadder = true;
+            gameObject.GetComponent<Rigidbody>().useGravity = false;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Ladder")
+        { 
+            onLadder = false;
+            gameObject.GetComponent<Rigidbody>().useGravity = true;
+        }
+    }
 }
+
+
