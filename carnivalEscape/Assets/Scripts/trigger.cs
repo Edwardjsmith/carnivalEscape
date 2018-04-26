@@ -22,13 +22,11 @@ public class trigger : MonoBehaviour
                 {
                     playerLook.Instance.balanceWeights = true;
                     spotLight.color = Color.green;
-                    Destroy(triggerObjects[i]);
+                    Destroy(triggerObjects[1]);
+                    Destroy(triggerObjects[0]);
                 }
             }
-            else
-            {
-                spotLight.color = Color.red;
-            }
+            
         }
     }
 
@@ -39,7 +37,7 @@ public class trigger : MonoBehaviour
             if (other.gameObject == triggerObjects[i].gameObject)
             {
                 colliders.Remove(other.gameObject);
-                spotLight.color = Color.white;
+
             }
         }
 

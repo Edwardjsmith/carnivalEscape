@@ -17,6 +17,7 @@ public class playerMove : MonoBehaviour
     bool onLadder;
 
     public GameObject[] deadZones;
+    public GameObject[] points;
    
 
     Vector3 lightPos;
@@ -82,15 +83,15 @@ public class playerMove : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         for (int i = 0; i < deadZones.Length; i++)
         {
-            if (other.name == deadZones[i].GetComponent<Collider>().name)
+            if (other.gameObject == deadZones[i].gameObject)
             {
                 //Resets pos if the player either falls on the tight rope or the player simply tries to skip parts of the level
 
-                gameObject.transform.position = other.transform.position;
+                gameObject.transform.position = points[i].transform.position;
             }
 
         }
