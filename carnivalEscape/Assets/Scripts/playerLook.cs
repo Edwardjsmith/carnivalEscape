@@ -71,8 +71,14 @@ public class playerLook : MonoBehaviour
     public bool keypad;
     int currentPassword = 0;
 
+    bool hasBalancePole = false;
+
     GameObject rope1;
     GameObject selector;
+
+    public bool[] useLadder;
+    public GameObject[] ladders;
+
     public static playerLook Instance
     {
         get
@@ -115,9 +121,11 @@ public class playerLook : MonoBehaviour
             rope1.GetComponent<Collider>().enabled = false;
         }
         selector = GameObject.FindGameObjectWithTag("selector");
+
+        useLadder = new bool[ladders.Length];
     }
 
-
+    
 
 
 
@@ -361,6 +369,7 @@ public class playerLook : MonoBehaviour
             var otherWheel = GameObject.FindGameObjectWithTag("codePuzzle2");
             
             seenObjectText.GetComponent<Text>().text = objectHit.collider.tag.ToString();
+            seenObjectText.GetComponent<Text>().color = Color.yellow;
             seenObjectText.gameObject.SetActive(true);
 
             for (int i = 0; i < collectableItems.Length; i++)
@@ -381,14 +390,17 @@ public class playerLook : MonoBehaviour
                         hasAxehead = true;
                     }
                 }
-                if (objectHit.collider.tag == "axeHead")
+                for (int j = 0; j < ladders.Length; j++)
                 {
-                    if (Input.GetButton("Fire1"))
+                    if (objectHit.collider == ladders[j].GetComponent<Collider>())
                     {
-                        objectHit.transform.gameObject.SetActive(false);
-                        hasAxehead = true;
+                        if (Input.GetButton("Fire1"))
+                        {
+                            useLadder[j] = true;
+                        }
                     }
                 }
+
                 if (objectHit.collider.tag == "axeHandle")
                 {
                     if (Input.GetButton("Fire1"))
@@ -400,6 +412,19 @@ public class playerLook : MonoBehaviour
                 if (hasAxehead == true && hasHandle == true && collectableItems[i].gameObject.tag == "Axe")
                 {
                     hasItem[i] = true;
+                }
+
+                if (balanceWeights == true && hasBalancePole == true && collectableItems[i].gameObject.tag == "Balancing pole")
+                {
+                    hasItem[i] = true;
+                }
+                if(objectHit.collider.tag == "Pole" && collectableItems[i].gameObject.tag == "Axe" && collectableItems[i].activeSelf)
+                {
+                    if (Input.GetButton("Fire1"))
+                    {
+                        hasBalancePole = true;
+                        objectHit.transform.gameObject.SetActive(false);
+                    }
                 }
 
                 if (objectHit.collider.gameObject == keypadObj[objRef])

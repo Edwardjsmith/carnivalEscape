@@ -10,7 +10,7 @@ public class trigger : MonoBehaviour
     public Light spotLight;
     
    
-    private void OnCollisionEnter(Collision other)
+    private void OnCollisionStay(Collision other)
     {
         for (int i = 0; i < triggerObjects.Length; i++)
         {

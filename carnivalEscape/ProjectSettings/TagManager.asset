@@ -25,6 +25,8 @@ TagManager:
   - Ladder
   - Scale
   - Pole
+  - Pole weight
+  - Cannon
   layers:
   - Default
   - TransparentFX

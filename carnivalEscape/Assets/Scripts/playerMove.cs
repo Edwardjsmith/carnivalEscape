@@ -17,6 +17,7 @@ public class playerMove : MonoBehaviour
     bool onLadder;
 
     public GameObject[] deadZones;
+   
 
     Vector3 lightPos;
 
@@ -38,6 +39,15 @@ public class playerMove : MonoBehaviour
         if (!playerLook.Instance.playerDead)
         {
             movement();
+        }
+
+        for (int i = 0; i < playerLook.Instance.useLadder.Length; i++)
+        {
+            if (playerLook.Instance.useLadder[i])
+            {
+                transform.position = playerLook.Instance.ladders[i].GetComponentInChildren<Transform>().position;
+                playerLook.Instance.useLadder[i] = false;
+            }
         }
     }
 
@@ -71,24 +81,6 @@ public class playerMove : MonoBehaviour
 
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.tag == "Ladder")
-        {
-            onLadder = true;
-            gameObject.GetComponent<Rigidbody>().useGravity = false;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Ladder")
-        { 
-            onLadder = false;
-            gameObject.GetComponent<Rigidbody>().useGravity = true;
-        }
-        
-    }
 
     private void OnTriggerEnter(Collider other)
     {
