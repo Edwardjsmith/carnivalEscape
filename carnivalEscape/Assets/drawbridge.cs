@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class drawbridge : MonoBehaviour {
 
-    public bool lowerBridge = false;
+    public static bool lowerBridge = false;
     // Use this for initialization
 
 

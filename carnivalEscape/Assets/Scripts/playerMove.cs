@@ -14,8 +14,6 @@ public class playerMove : MonoBehaviour
     float horizontal;
     float vertical;
 
-    bool onLadder;
-
     public GameObject[] deadZones;
     public GameObject[] points;
    
@@ -63,14 +61,10 @@ public class playerMove : MonoBehaviour
         Vector3 moveHorizontal = transform.right * horizontal * speed * Time.deltaTime;
 
         //Move forward and back
-        if (!onLadder)
-        {
-            moveForward = transform.forward * vertical * speed * Time.deltaTime;
-        }
-        else
-        {
-            transform.position += transform.up * Time.deltaTime * speed;
-        }
+        
+         moveForward = transform.forward * vertical * speed * Time.deltaTime;
+        
+    
 
         //Implement said moves
         playerController.SimpleMove(moveHorizontal);

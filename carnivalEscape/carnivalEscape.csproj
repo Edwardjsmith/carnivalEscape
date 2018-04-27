@@ -131,6 +131,7 @@
     <Compile Include="Assets\Scripts\playerMove.cs" />
     <Compile Include="Assets\Scripts\trigger.cs" />
     <Compile Include="Assets\Scripts\unitTests.cs" />
+    <Compile Include="Assets\triggerThis.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />
