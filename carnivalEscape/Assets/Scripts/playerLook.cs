@@ -459,7 +459,7 @@ public class playerLook : MonoBehaviour
             {
                 if (Input.GetButton("Fire1"))
                 {
-                    //End game
+                    SceneManager.LoadScene(0);
                 }
             }
 
