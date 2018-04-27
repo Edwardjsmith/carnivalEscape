@@ -79,6 +79,8 @@ public class playerLook : MonoBehaviour
     public bool[] useLadder;
     public GameObject[] ladders;
 
+    
+
     public static playerLook Instance
     {
         get
@@ -453,6 +455,13 @@ public class playerLook : MonoBehaviour
                 }
             }
 
+            if (objectHit.collider.tag == "Cannon")
+            {
+                if (Input.GetButton("Fire1"))
+                {
+                    //End game
+                }
+            }
 
             if (objectHit.transform.GetComponent<dropOnCollision>())
         {

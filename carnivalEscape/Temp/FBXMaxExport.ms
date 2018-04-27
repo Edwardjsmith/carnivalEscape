@@ -26,18 +26,18 @@ fn DialogCallback =
 pluginManager.loadClass FBXIMP;
 pluginManager.loadClass FBXEXP;
 
-openLog "C:/Users/Oliver/DOCUME~1/GitHub/CARNIV~1/CARNIV~1/Temp/3dsMax.log" mode:"w"
+openLog "C:/Users/2smite17/DOCUME~1/GitHub/CARNIV~1/CARNIV~1/Temp/3dsMax.log" mode:"w"
 print "Start of log file."; flushLog();
 while true do
 (	
-	if ( fileExists "C:/Users/Oliver/DOCUME~1/GitHub/CARNIV~1/CARNIV~1/Temp/MaxCommandPipe" ) then
+	if ( fileExists "C:/Users/2smite17/DOCUME~1/GitHub/CARNIV~1/CARNIV~1/Temp/MaxCommandPipe" ) then
 	(
 		exportNormals = false;
 		exportTangents = false;
 		bakeAnimations = false;
 		useFileUnits = false;
 	
-		waitpipe = (openFile "C:/Users/Oliver/DOCUME~1/GitHub/CARNIV~1/CARNIV~1/Temp/MaxCommandPipe" mode:"r");
+		waitpipe = (openFile "C:/Users/2smite17/DOCUME~1/GitHub/CARNIV~1/CARNIV~1/Temp/MaxCommandPipe" mode:"r");
 		filename = (readLine waitpipe);
 		fbxFilename = (readline waitpipe);
 		
@@ -154,7 +154,7 @@ while true do
 					print "After fbx export"; flushLog();
 				)
 
-				deleteFile "C:/Users/Oliver/DOCUME~1/GitHub/CARNIV~1/CARNIV~1/Temp/MaxCommandPipe";
+				deleteFile "C:/Users/2smite17/DOCUME~1/GitHub/CARNIV~1/CARNIV~1/Temp/MaxCommandPipe";
 				print "Finished max loading and fbx conversion"; flushLog();
 			) -- with defaultAction
 		)
