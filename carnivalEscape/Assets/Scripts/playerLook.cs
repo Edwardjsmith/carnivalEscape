@@ -224,7 +224,7 @@ public class playerLook : MonoBehaviour
                 keypad = false;
             }
 
-            if (keypadInput != null && keypadInput.Length > 3)
+            if (keypadInput != null && keypadInput.Length > keypadPassword[currentPassword].Length)
             {
                 keypadInput = "";
             }
