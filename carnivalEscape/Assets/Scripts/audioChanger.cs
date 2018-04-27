@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class audioChanger : MonoBehaviour {
 
+    //Changes music when the game nears the end
 
    AudioSource thisClip;
 

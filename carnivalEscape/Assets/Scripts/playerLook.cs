@@ -140,7 +140,7 @@ public class playerLook : MonoBehaviour
 
         if (keypad)
         {
-
+            //Creates a keypad on GUI
             Cursor.lockState = CursorLockMode.None;
 
             boxStyle = new GUIStyle(GUI.skin.box);
@@ -161,6 +161,8 @@ public class playerLook : MonoBehaviour
                         keypad = false;
                         currentPassword++;
                         keypadInput = "";
+
+                        //If current password is right, do above
                     }
                 }
 
@@ -231,7 +233,7 @@ public class playerLook : MonoBehaviour
         }
 
 
-
+        //Draws axe pieces to screen
         if (hasAxehead)
         {
             GUI.DrawTexture(new Rect(Screen.width - axeHead.width / 6, Screen.height - axeHead.height / 8, axeHead.width / 6, axeHead.height / 6), axeHead);
@@ -240,6 +242,8 @@ public class playerLook : MonoBehaviour
         {
             GUI.DrawTexture(new Rect(Screen.width - axeHead.width / 6 - 30, Screen.height - axeHead.height / 6, axeHandle.width / 6, axeHandle.height / 6), axeHandle);
         }
+
+        //Creates the timer
         int minutes = Mathf.FloorToInt(timer / 60F);
         int seconds = Mathf.FloorToInt(timer - minutes * 60);
         string clock = string.Format("{0:0}:{1:00}", minutes, seconds);
@@ -248,7 +252,7 @@ public class playerLook : MonoBehaviour
 
         if (playerDead)
         {
-
+            //Fades in the death screen then gives the option to restart or quit
             alpha -= fadeDir * fadeSpeed * Time.deltaTime;
             alpha = Mathf.Clamp01(alpha);
 
@@ -268,7 +272,7 @@ public class playerLook : MonoBehaviour
                 }
                 if (GUI.Button(new Rect(Screen.width / 2 - quitTex.width / 2 / 3, Screen.height / 3.4f, quitTex.width / 3.5f, quitTex.height / 3.5f), quitTex))
                 {
-                    Application.Quit();
+                    SceneManager.LoadScene(0);
                 }
             }
         }
@@ -278,6 +282,7 @@ public class playerLook : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         objRef = currentPassword;
         if (crosshairActive == false)
         {
@@ -368,10 +373,15 @@ public class playerLook : MonoBehaviour
 
         seenObject = Physics.Raycast(ray, out objectHit, 5.0f);
 
+
+        //Allows for the manipulation of objects below
+
+
         if (seenObject)
         {
             var otherWheel = GameObject.FindGameObjectWithTag("codePuzzle2");
             
+            //Puts text on screen with the color yellow
             seenObjectText.GetComponent<Text>().text = objectHit.collider.tag.ToString();
             seenObjectText.GetComponent<Text>().color = Color.yellow;
             seenObjectText.gameObject.SetActive(true);
@@ -518,6 +528,8 @@ public class playerLook : MonoBehaviour
 
     public void updateEquip(GameObject obj)
     {
+        //Updates the equip state of each collectable objects
+
         equipItem = !equipItem;
 
         for (int i = 0; i < collectableItems.Length; i++)

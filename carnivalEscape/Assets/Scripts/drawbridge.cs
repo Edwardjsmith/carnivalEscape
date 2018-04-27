@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class drawbridge : MonoBehaviour {
 
+
+    //Rotates draw bridge when triggered
+
     public static bool lowerBridge = false;
     // Use this for initialization
 

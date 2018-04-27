@@ -44,6 +44,7 @@ public class playerMove : MonoBehaviour
         {
             if (playerLook.Instance.useLadder[i])
             {
+                //Move player up ladder
                 transform.position = playerLook.Instance.ladders[i].GetComponentInChildren<Transform>().position + new Vector3(0, 2, 0);
                 playerLook.Instance.useLadder[i] = false;
             }
@@ -70,7 +71,7 @@ public class playerMove : MonoBehaviour
         playerController.SimpleMove(moveHorizontal);
         playerController.SimpleMove(moveForward);
 
-
+        //Moves spotligght with player
         lightPos = new Vector3(transform.position.x, playerSpotlight.transform.position.y, transform.position.z);
         playerSpotlight.transform.position = lightPos;
 

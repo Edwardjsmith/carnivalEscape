@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class trigger : MonoBehaviour
 {
+
+
+    //Checks for collision with objects in the array. if so, adds to list and compares to see if they are at the same length. If so, trigger
     
     public GameObject[] triggerObjects;
     public List<GameObject> colliders;
