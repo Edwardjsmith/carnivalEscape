@@ -78,8 +78,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\changeScene.cs" />
-    <Compile Include="Assets\drawbridge.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
     <Compile Include="Assets\PostProcessing\Runtime\Attributes\TrackballAttribute.cs" />
@@ -126,13 +124,14 @@
     <Compile Include="Assets\PostProcessing\Runtime\Utils\RenderTextureFactory.cs" />
     <Compile Include="Assets\PostProcessing\Utilities\CustomMotionTexture\ExampleWheelController.cs" />
     <Compile Include="Assets\Scripts\audioChanger.cs" />
+    <Compile Include="Assets\Scripts\changeScene.cs" />
+    <Compile Include="Assets\Scripts\drawbridge.cs" />
     <Compile Include="Assets\Scripts\dropOnCollision.cs" />
     <Compile Include="Assets\Scripts\inventory.cs" />
     <Compile Include="Assets\Scripts\playerLook.cs" />
     <Compile Include="Assets\Scripts\playerMove.cs" />
     <Compile Include="Assets\Scripts\trigger.cs" />
-    <Compile Include="Assets\Scripts\unitTests.cs" />
-    <Compile Include="Assets\triggerThis.cs" />
+    <Compile Include="Assets\Scripts\triggerThis.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramCompute.compute" />

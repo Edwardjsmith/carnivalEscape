@@ -44,7 +44,7 @@ public class playerMove : MonoBehaviour
         {
             if (playerLook.Instance.useLadder[i])
             {
-                transform.position = playerLook.Instance.ladders[i].GetComponentInChildren<Transform>().position;
+                transform.position = playerLook.Instance.ladders[i].GetComponentInChildren<Transform>().position + new Vector3(0, 2, 0);
                 playerLook.Instance.useLadder[i] = false;
             }
         }

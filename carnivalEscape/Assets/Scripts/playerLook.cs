@@ -74,7 +74,7 @@ public class playerLook : MonoBehaviour
     bool hasBalancePole = false;
 
     GameObject rope1;
-    GameObject selector;
+   
 
     public bool[] useLadder;
     public GameObject[] ladders;
@@ -124,7 +124,7 @@ public class playerLook : MonoBehaviour
         {
             rope1.GetComponent<Collider>().enabled = false;
         }
-        selector = GameObject.FindGameObjectWithTag("selector");
+        
 
         useLadder = new bool[ladders.Length];
     }

@@ -29,6 +29,11 @@ TagManager:
   - Cannon
   - Pivot
   - Small pole
+  - Toy
+  - Kettle
+  - Vase
+  - Cup
+  - Crate
   layers:
   - Default
   - TransparentFX
