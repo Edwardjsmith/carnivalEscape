@@ -79,6 +79,8 @@ public class playerLook : MonoBehaviour
     public bool[] useLadder;
     public GameObject[] ladders;
 
+    int poleCount;
+
     
 
     public static playerLook Instance
@@ -415,6 +417,10 @@ public class playerLook : MonoBehaviour
                 {
                     hasItem[i] = true;
                 }
+                if (poleCount == 5 && collectableItems[i].gameObject.tag == "Rope ladder")
+                {
+                    hasItem[i] = true;
+                }
 
                 if (balanceWeights == true && hasBalancePole == true && collectableItems[i].gameObject.tag == "Balancing pole")
                 {
@@ -460,6 +466,15 @@ public class playerLook : MonoBehaviour
                 if (Input.GetButton("Fire1"))
                 {
                     SceneManager.LoadScene(0);
+                }
+            }
+
+            if (objectHit.collider.tag == "Small pole")
+            {
+                if (Input.GetButton("Fire1"))
+                {
+                    objectHit.transform.gameObject.SetActive(false);
+                    poleCount++;
                 }
             }
 

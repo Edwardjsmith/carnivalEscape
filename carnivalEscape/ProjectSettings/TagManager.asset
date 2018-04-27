@@ -28,6 +28,7 @@ TagManager:
   - Pole weight
   - Cannon
   - Pivot
+  - Small pole
   layers:
   - Default
   - TransparentFX
